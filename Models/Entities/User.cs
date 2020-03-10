@@ -27,7 +27,7 @@ namespace testEvolution.Models.Entities
         public User(){}
         public User(SqlDataReader reader){
             Id = Convert.ToInt32(reader["id"]);
-            Username = reader["user_name"].ToString();
+            Username = reader["username"].ToString();
             Password = reader["password"].ToString();
             State = (State)Convert.ToInt32(reader["state"]);
             roleId = Convert.ToInt32(reader["role_id"]);

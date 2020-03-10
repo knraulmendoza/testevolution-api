@@ -81,7 +81,7 @@ namespace testEvolution.Services
 
         public User Find(User model)
         {
-            sqlCommand.CommandText = $"SELECT * FROM users INNER JOIN users_roles ON users_roles.user_id = dbo.users.id INNER JOIN roles ON users_roles.role_id = roles.id WHERE users.user_name='{model.Username}' AND users.state = {Convert.ToInt32(State.ACTIVO)}";
+            sqlCommand.CommandText = $"SELECT * FROM users INNER JOIN users_roles ON users_roles.user_id = dbo.users.id INNER JOIN roles ON users_roles.role_id = roles.id WHERE users.username='{model.Username}' AND users.state = {Convert.ToInt32(State.ACTIVO)}";
             Connection.Open();
             reader = sqlCommand.ExecuteReader();
             User user = reader.Read()? new User(reader): null;
