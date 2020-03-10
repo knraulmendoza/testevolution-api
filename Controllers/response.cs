@@ -12,7 +12,6 @@ namespace evolutionPrueba.Controllers
             this.entity = entity;
             this.Status = status;
             this.message = message;
-
         }
     }
 }
