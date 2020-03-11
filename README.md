@@ -28,3 +28,7 @@ Para revisar todas las peticiones ingrese a los controladores de la API.
 Cadena de conexión : sql5049.site4now.net
 Usuario: DB_A561BC_testevolution_admin
 Contraseña: test123456
+
+# Usuarios base
+**usuario**: admin ; **contraseña** : 123456 ; **rol** : Administrador
+**usuario**: renrique ; **contraseña** : 123456 ; **rol** : contador
