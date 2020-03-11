@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\prueba tecnica evolution\\prueba\\testevolution-api\\testevolution-api.csproj": {}
+    "D:\\prueba tecnica evolution\\prueba\\testevolution-api\\testevolution-api.csproj": {}
   },
   "projects": {
-    "d:\\prueba tecnica evolution\\prueba\\testevolution-api\\testevolution-api.csproj": {
+    "D:\\prueba tecnica evolution\\prueba\\testevolution-api\\testevolution-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\prueba tecnica evolution\\prueba\\testevolution-api\\testevolution-api.csproj",
+        "projectUniqueName": "D:\\prueba tecnica evolution\\prueba\\testevolution-api\\testevolution-api.csproj",
         "projectName": "testevolution-api",
-        "projectPath": "d:\\prueba tecnica evolution\\prueba\\testevolution-api\\testevolution-api.csproj",
+        "projectPath": "D:\\prueba tecnica evolution\\prueba\\testevolution-api\\testevolution-api.csproj",
         "packagesPath": "C:\\Users\\Kenneth\\.nuget\\packages\\",
-        "outputPath": "d:\\prueba tecnica evolution\\prueba\\testevolution-api\\obj\\",
+        "outputPath": "D:\\prueba tecnica evolution\\prueba\\testevolution-api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

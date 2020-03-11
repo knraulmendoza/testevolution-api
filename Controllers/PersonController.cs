@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace testEvolution.Controllers
 {
-
     [Authorize]
     [Route("api/person")]
     [ApiController]
@@ -22,11 +21,13 @@ namespace testEvolution.Controllers
             _personService = new PersonService();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet("all")]
         public IEnumerable<Person> GetAll(){
             return _personService.GetAll();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet("{id}")]
         public Person Get(int id){
             return _personService.Find(id);
@@ -37,7 +38,7 @@ namespace testEvolution.Controllers
         public Person GetUser(int id){
             return _personService.FindUser(id);
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPost("register")]
         public ActionResult<Person> Register(Person person)
         {

@@ -39,6 +39,7 @@ namespace testEvolution.Services
                         user.Id = GetInsert();
                         Console.WriteLine(user.Id);
                         if (_roleUserService.Add(new RoleUser(user.roleId, user.Id)) == null) return null;
+                        Console.WriteLine("bueno paso");
                         return user;
                     }
                     return null;

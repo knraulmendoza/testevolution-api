@@ -19,13 +19,15 @@ namespace evolutionPrueba.Controllers
         {
             _roleService = new RoleService();
         }
+
+        [Authorize(Roles = "admin")]
         [HttpGet("{id}")]
         public ActionResult<Role> Get(int id)
         {
             return _roleService.Find(id);
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         [HttpPost("register")]
         public ActionResult<Role> Register([FromBody]Role role)
         {
@@ -35,7 +37,7 @@ namespace evolutionPrueba.Controllers
             if (model == null) return BadRequest(model);
             return Ok(model);
         }
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         [Route("update")]
         [HttpPut("{id}")]
         public ActionResult<Role> Update(int id, [FromBody]Role role)
@@ -46,7 +48,7 @@ namespace evolutionPrueba.Controllers
             if (model == null) return BadRequest(model);
             return Ok(model);
         }
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         [Route("getAll")]
         [HttpGet]
         public IEnumerable<Role> GetAll()

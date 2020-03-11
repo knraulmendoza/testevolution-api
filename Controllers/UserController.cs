@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using evolutionPrueba.Controllers;
+using evolutionPrueba.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,10 +24,12 @@ namespace testEvolution.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly UserService _userService;
+        private readonly RoleService _roleService;
         private readonly Response<User> _response;
         public UserController(IConfiguration configuration)
         {
             _userService = new UserService();
+            _roleService = new RoleService();
             _configuration = configuration;
             _response = new Response<User>();
         }
@@ -35,19 +38,20 @@ namespace testEvolution.Controllers
         [HttpPost]
         public ActionResult<User> Authenticate([FromBody]User user)
         {
-            Console.WriteLine("usuario " + user.Username);
             if (user.Username == null || user.Username.Length < 4) return BadRequest("Username is empty ó no cumple");
             User model = _userService.Find(user);
             if(model==null) return BadRequest(model);
             // Leemos el secret_key desde nuestro appseting
             var secretKey = _configuration.GetValue<string>("SecretKey");
             var key = Encoding.ASCII.GetBytes(secretKey);
-
+            Console.WriteLine($"{model.roleId} - {model.Username}");
+            Role role = _roleService.Find(model.roleId);
             // Creamos los claims (pertenencias, características) del usuario
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, model.Id.ToString()),
                 new Claim(ClaimTypes.Name, model.Username),
+                new Claim(ClaimTypes.Role, role.Name),
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -72,6 +76,8 @@ namespace testEvolution.Controllers
         {
             return _userService.Find(id);
         }
+
+        [Authorize(Roles = "admin")]
         [HttpPost("register")]
         public ActionResult<User> Register(User user)
         {
@@ -81,6 +87,7 @@ namespace testEvolution.Controllers
             return Ok(model);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public ActionResult<User> Update(int id, [FromBody]User user)
         {
